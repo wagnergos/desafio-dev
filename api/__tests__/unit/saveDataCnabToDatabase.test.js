@@ -1,4 +1,4 @@
-import SaveDataCnabToDatabase from '../../src/services/SaveDataCnabToDatabase';
+import SaveDataCnabToDatabase from '../../src/app/services/SaveDataCnabToDatabase';
 
 describe('create register from cnab', () => {
   it('should be able to register store and transaction from cnab', () => {

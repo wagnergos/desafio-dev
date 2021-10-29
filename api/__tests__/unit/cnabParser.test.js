@@ -1,4 +1,4 @@
-import CnabParser from '../../src/services/CnabParser';
+import CnabParser from '../../src/app/services/CnabParser';
 
 describe('cnab parser service', () => {
   it('should be able to return transactions array', () => {
