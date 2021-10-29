@@ -1,7 +1,13 @@
 import SaveDataCnabToDatabase from '../../src/app/services/SaveDataCnabToDatabase';
 
+import truncate from '../util/truncate';
+
 describe('create register from cnab', () => {
-  it('should be able to register store and transaction from cnab', () => {
+  beforeEach(async () => {
+    await truncate();
+  });
+
+  it('should be able to register store and transaction from cnab', async () => {
     const data = {
       type: 3,
       date: '2019-03-01',
@@ -13,7 +19,7 @@ describe('create register from cnab', () => {
       store: 'BAR DO JOÃO',
     };
 
-    const save = SaveDataCnabToDatabase.run(data);
+    const save = await SaveDataCnabToDatabase.run(data);
 
     expect(save).toHaveProperty('id');
   });
