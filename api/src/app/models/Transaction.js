@@ -16,6 +16,14 @@ class Transaction extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Store, { foreignKey: 'store_id', as: 'transaction' });
+    this.belongsTo(models.TransactionCategory, {
+      foreignKey: 'transaction_category_id',
+      as: 'transaction_category',
+    });
+  }
 }
 
 export default Transaction;
