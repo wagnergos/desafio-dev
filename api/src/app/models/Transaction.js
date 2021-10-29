@@ -21,7 +21,7 @@ class Transaction extends Model {
     this.belongsTo(models.Store, { foreignKey: 'store_id', as: 'transaction' });
     this.belongsTo(models.TransactionCategory, {
       foreignKey: 'transaction_category_id',
-      as: 'transaction_category',
+      as: 'category',
     });
   }
 }

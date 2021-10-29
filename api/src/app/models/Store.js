@@ -14,6 +14,12 @@ class Store extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Transaction, {
+      as: 'transaction',
+    });
+  }
 }
 
 export default Store;

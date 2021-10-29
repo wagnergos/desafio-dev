@@ -5,7 +5,7 @@ class TransactionCategory extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        card: Sequelize.ENUM('input', 'output'),
+        type: Sequelize.ENUM('input', 'output'),
       },
       {
         sequelize,
@@ -13,6 +13,12 @@ class TransactionCategory extends Model {
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.hasMany(models.Transaction, {
+      as: 'category',
+    });
   }
 }
 
