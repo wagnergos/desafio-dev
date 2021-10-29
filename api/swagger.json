@@ -7,5 +7,40 @@
     "contact": {
       "email": "wagner.wgos@gmail.com"
     }
+  },
+  "paths": {
+    "/stores": {
+      "get": {
+        "tags": ["stores"],
+        "summary": "List all stores",
+        "description": "List all stores",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
