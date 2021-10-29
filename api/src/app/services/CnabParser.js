@@ -7,7 +7,8 @@ class CnabParser {
   run(cnabText) {
     const transactions = cnabText
       .split(/\r?\n|\r/)
-      .map(transaction => transaction.trim());
+      .map(transaction => transaction.trim())
+      .filter(transaction => transaction.length > 0);
 
     return transactions.map(transaction => ({
       type: Number(this.cropTransactionFields(transaction, 0, 1)),
