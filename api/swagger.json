@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ByCoders - desafio dev",
+    "description": "This is an API ByCoders",
+    "version": "1.0.0",
+    "contact": {
+      "email": "wagner.wgos@gmail.com"
+    }
+  }
+}

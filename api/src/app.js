@@ -1,6 +1,9 @@
 import './bootstrap';
 
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+
+import swaggerDocument from '../swagger.json';
 
 import routes from './routes';
 
@@ -17,6 +20,11 @@ class App {
   middlewares() {}
 
   routes() {
+    this.server.use(
+      '/api-docs',
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerDocument)
+    );
     this.server.use(routes);
   }
 }
