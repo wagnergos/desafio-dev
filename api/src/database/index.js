@@ -1,8 +1,12 @@
 import Sequelize from 'sequelize';
 
+import Store from '../app/models/Store';
+import Transaction from '../app/models/Transaction';
+import TransactionCategory from '../app/models/TransactionCategory';
+
 import databaseConfig from '../config/database';
 
-const models = [];
+const models = [Store, Transaction, TransactionCategory];
 
 class Database {
   constructor() {
