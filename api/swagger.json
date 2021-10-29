@@ -41,6 +41,57 @@
           }
         }
       }
+    },
+    "/transactions": {
+      "get": {
+        "tags": ["transactions"],
+        "summary": "List all transactions",
+        "description": "List all transactions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer"
+                      },
+                      "cpf": {
+                        "type": "string"
+                      },
+                      "card": {
+                        "type": "string"
+                      },
+                      "transaction_at": {
+                        "type": "string",
+                        "example": "2021-10-29T07:48:39.000Z"
+                      },
+                      "transaction_category_id": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
