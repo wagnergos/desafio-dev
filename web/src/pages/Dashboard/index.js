@@ -1,5 +1,11 @@
 import React from 'react';
 
+import { GridContainer } from './styles';
+
 export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+  return (
+    <GridContainer>
+      <h1>Dashboard</h1>
+    </GridContainer>
+  );
 }
