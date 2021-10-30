@@ -6,6 +6,7 @@ export const Container = styled.div`
 
   max-height: 100vh;
   padding: 20px;
+  padding-left: 4px;
   background: var(--primary);
 
   display: flex;
