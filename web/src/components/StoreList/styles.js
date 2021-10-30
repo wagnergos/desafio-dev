@@ -29,3 +29,42 @@ export const Container = styled.div`
     background: var(--primary);
   }
 `;
+
+export const Button = styled.button`
+  width: 100%;
+  min-height: 78px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 1.3;
+  background: ${({ selected }) =>
+    selected ? 'var(--white)' : 'var(--secondary)'};
+
+  flex-shrink: 0;
+
+  transition: background ease 0.2s;
+
+  &:hover {
+    background: var(--white);
+
+    strong {
+      color: var(--secondary);
+    }
+  }
+
+  strong {
+    font-size: 18px;
+    color: ${({ selected }) =>
+      selected ? 'var(--secondary)' : 'var(--white)'};
+  }
+
+  p {
+    color: var(--gray);
+  }
+
+  span {
+    font-weight: bold;
+    color: var(--primary);
+  }
+`;
