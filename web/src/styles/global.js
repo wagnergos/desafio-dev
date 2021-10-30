@@ -33,7 +33,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  ::root {
+  :root {
     --primary: #02BE3B;
     --secondary: #171616;
 
