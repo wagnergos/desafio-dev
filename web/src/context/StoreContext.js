@@ -3,27 +3,49 @@ import PropTypes from 'prop-types';
 
 import api from '../services/api';
 
-const StoreContext = createContext([]);
+const StoreContext = createContext({});
 
 export const StoreProvider = ({ children }) => {
-  const [data, setData] = useState(() => {
-    const stores = localStorage.getItem('@DesafioDev:stores');
+  const [stores, setStores] = useState(() => {
+    const storesStorage = localStorage.getItem('@DesafioDev:stores');
 
-    if (stores) return JSON.parse(stores);
+    if (storesStorage) return JSON.parse(storesStorage);
 
     return [];
+  });
+
+  const [selectedStore, setSelectedStore] = useState(() => {
+    const selected = localStorage.getItem('@DesafioDev:selectedStore');
+
+    if (selected) return selected;
+
+    return null;
   });
 
   const getStores = useCallback(async () => {
     const response = await api.get('/stores');
 
+    localStorage.setItem('@DesafioDev:selectedStore', response.data[0].id);
     localStorage.setItem('@DesafioDev:stores', JSON.stringify(response.data));
-    console.log(response.data);
-    setData(response.data);
+
+    setStores(response.data);
+
+    setSelectedStore(response.data[0].id);
+  }, []);
+
+  const selectStore = useCallback(id => {
+    setSelectedStore(id);
   }, []);
 
   return (
-    <StoreContext.Provider value={{ stores: data, getStores }}>
+    <StoreContext.Provider
+      value={{
+        stores,
+        selectedStore,
+        selectStore,
+        getStores,
+      }}
+    >
       {children}
     </StoreContext.Provider>
   );

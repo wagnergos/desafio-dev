@@ -7,7 +7,7 @@ import { useToast } from '../../context/ToastContext';
 import { Container, Button } from './styles';
 
 export default function StoreList() {
-  const { stores, getStores } = useStore();
+  const { stores, selectedStore, selectStore, getStores } = useStore();
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -25,13 +25,17 @@ export default function StoreList() {
     }
 
     loadStores();
-  }, [getStores]);
+  }, [getStores, addToast]);
 
   return (
     <Container>
       {Array.isArray(stores) && !!stores.length ? (
         stores.map(store => (
-          <Button key={store.id} selected>
+          <Button
+            key={store.id}
+            onClick={() => selectStore(store.id)}
+            selected={selectedStore === store.id}
+          >
             <strong>{store.name}</strong>
             <p>{store.owner_name}</p>
             <span>R$ 1.500,00</span>

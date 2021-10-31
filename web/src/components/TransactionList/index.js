@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 
 import { useTransaction } from '../../context/TransactionContext';
+import { useStore } from '../../context/StoreContext';
 import { useToast } from '../../context/ToastContext';
 
 import { Container, Table } from './styles';
 
 export default function TransactionList() {
   const { transactions, getTransactions } = useTransaction();
+  const { selectedStore } = useStore();
   const { addToast } = useToast();
 
   useEffect(() => {
     async function loadTransactions() {
       try {
-        await getTransactions(1);
+        await getTransactions(selectedStore);
       } catch (error) {
         addToast({
           type: 'error',
@@ -24,7 +26,7 @@ export default function TransactionList() {
     }
 
     loadTransactions();
-  }, [getTransactions, addToast]);
+  }, [getTransactions, selectedStore, addToast]);
 
   return (
     <Container>
@@ -32,8 +34,6 @@ export default function TransactionList() {
         <thead>
           <tr>
             <th>Data da transação</th>
-            <th>Nome da loja</th>
-            <th>Dono da loja</th>
             <th>Valor</th>
             <th>Transação</th>
             <th>Natureza</th>
@@ -45,8 +45,6 @@ export default function TransactionList() {
           {transactions.map(transaction => (
             <tr key={transaction.id}>
               <td>{transaction.transaction_at}</td>
-              <td>nome</td>
-              <td>nome</td>
               <td>{transaction.value}</td>
               <td>{transaction.category.name}</td>
               <td>{transaction.category.type}</td>

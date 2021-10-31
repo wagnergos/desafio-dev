@@ -16,5 +16,5 @@ export default function ToastContainer({ messages }) {
 }
 
 ToastContainer.propTypes = {
-  messages: PropTypes.arrayOf.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
