@@ -24,5 +24,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'import/no-cycle': [2, { maxDepth: 1 }],
   },
 };

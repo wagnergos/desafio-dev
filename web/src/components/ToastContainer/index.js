@@ -1,25 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Container, Toast } from './styles';
+import Toast from './Toast';
 
-export default function ToastContainer() {
+import { Container } from './styles';
+
+export default function ToastContainer({ messages }) {
   return (
     <Container>
-      <Toast type="error">
-        <div>
-          <strong>Aconteceu um erro</strong>
-          <p>Não foi possível carregar a lista de lojas</p>
-        </div>
-
-        <button type="button">x</button>
-      </Toast>
-      <Toast hasDescription={false}>
-        <div>
-          <strong>Lista com sucesso</strong>
-        </div>
-
-        <button type="button">x</button>
-      </Toast>
+      {messages.map(message => (
+        <Toast key={message.id} message={message} />
+      ))}
     </Container>
   );
 }
+
+ToastContainer.propTypes = {
+  messages: PropTypes.arrayOf.isRequired,
+};

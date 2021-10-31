@@ -5,17 +5,14 @@ import Routes from './routes';
 
 import GlobalStyle from './styles/global';
 
-import ToastContainer from './components/ToastContainer';
-import { StoreProvider } from './context/StoreContext';
+import { AppProvider } from './context';
 
 function App() {
   return (
     <Router>
-      <StoreProvider>
+      <AppProvider>
         <Routes />
-      </StoreProvider>
-
-      <ToastContainer />
+      </AppProvider>
 
       <GlobalStyle />
     </Router>

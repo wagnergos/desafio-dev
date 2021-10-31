@@ -15,7 +15,7 @@ export const StoreProvider = ({ children }) => {
   });
 
   const getStores = useCallback(async () => {
-    const response = await api.get('/storess');
+    const response = await api.get('/stores');
 
     localStorage.setItem('@DesafioDev:stores', JSON.stringify(response.data));
     console.log(response.data);
