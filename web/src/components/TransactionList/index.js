@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useTransaction } from '../../context/TransactionContext';
+import { useToast } from '../../context/ToastContext';
 
 import { Container, Table } from './styles';
 
 export default function TransactionList() {
+  const { transactions, getTransactions } = useTransaction();
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    async function loadTransactions() {
+      try {
+        await getTransactions(1);
+      } catch (error) {
+        addToast({
+          type: 'error',
+          title: 'Erro na listagem das transações',
+          description:
+            'Ocorreu um erro ao tentar listar as transações, verifique a sua conexão.',
+        });
+      }
+    }
+
+    loadTransactions();
+  }, [getTransactions, addToast]);
+
   return (
     <Container>
       <Table>
@@ -19,26 +42,18 @@ export default function TransactionList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>data</td>
-            <td>nome</td>
-            <td>nome</td>
-            <td>valor</td>
-            <td>tdansação</td>
-            <td>natureza</td>
-            <td>cartão</td>
-            <td>cpf</td>
-          </tr>
-          <tr>
-            <td>data</td>
-            <td>nome</td>
-            <td>nome</td>
-            <td>valor</td>
-            <td>tdansação</td>
-            <td>natureza</td>
-            <td>cartão</td>
-            <td>cpf</td>
-          </tr>
+          {transactions.map(transaction => (
+            <tr key={transaction.id}>
+              <td>{transaction.transaction_at}</td>
+              <td>nome</td>
+              <td>nome</td>
+              <td>{transaction.value}</td>
+              <td>{transaction.category.name}</td>
+              <td>{transaction.category.type}</td>
+              <td>{transaction.card}</td>
+              <td>{transaction.cpf}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
 
