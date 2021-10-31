@@ -4,13 +4,18 @@ import styled from 'styled-components';
 export const Container = styled.div`
   grid-area: TL;
 
+  padding: 20px;
+
   background: var(--secondary);
 
-  div {
+  & > div {
+    padding: 12px;
+    color: var(--gray);
+
     display: flex;
     flex: 1;
-    margin: 10px 5%;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 
     button {
       padding: 10px;
@@ -28,8 +33,7 @@ export const Container = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 95%;
-  margin: 20px auto;
+  width: 100%;
   border-collapse: collapse;
 
   th,

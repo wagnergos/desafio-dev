@@ -10,9 +10,16 @@ const TransactionContext = createContext([]);
 
 export function TransactionProvider({ children }) {
   const [transactions, setTransactions] = useState([]);
+  const [totalTransactions, setTotalTransactions] = useState(0);
 
-  const getTransactions = useCallback(async storeId => {
-    const response = await api.get(`transactions/${storeId}`);
+  const getTransactions = useCallback(async (storeId, page = 1) => {
+    const response = await api.get(`transactions/${storeId}`, {
+      params: {
+        page,
+      },
+    });
+
+    setTotalTransactions(response.headers['x-total-count']);
 
     const formattedTransactions = await Promise.all(
       response.data.map(transaction => ({
@@ -32,7 +39,9 @@ export function TransactionProvider({ children }) {
   }, []);
 
   return (
-    <TransactionContext.Provider value={{ transactions, getTransactions }}>
+    <TransactionContext.Provider
+      value={{ transactions, totalTransactions, getTransactions }}
+    >
       {children}
     </TransactionContext.Provider>
   );
