@@ -22,15 +22,17 @@ export const StoreProvider = ({ children }) => {
     return null;
   });
 
-  const getStores = useCallback(async () => {
+  const getStores = useCallback(async (storeId = null) => {
     const response = await api.get('/stores');
 
     localStorage.setItem('@DesafioDev:selectedStore', response.data[0].id);
-    localStorage.setItem('@DesafioDev:stores', JSON.stringify(response.data));
+
+    if (!storeId) {
+      localStorage.setItem('@DesafioDev:stores', JSON.stringify(response.data));
+      setSelectedStore(response.data[0].id);
+    }
 
     setStores(response.data);
-
-    setSelectedStore(response.data[0].id);
   }, []);
 
   const selectStore = useCallback(id => {
