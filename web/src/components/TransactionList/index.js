@@ -42,7 +42,6 @@ export default function TransactionList() {
     async p => {
       const newPage = p > 1 ? p : 1;
 
-      console.log('nova page', newPage);
       setPage(newPage);
 
       await getTransactions(selectedStore, newPage);

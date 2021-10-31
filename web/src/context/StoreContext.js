@@ -19,11 +19,13 @@ export const StoreProvider = ({ children }) => {
 
     if (selected) return selected;
 
-    return null;
+    return 0;
   });
 
   const getStores = useCallback(async (storeId = null) => {
     const response = await api.get('/stores');
+
+    if (!Array.isArray(response.data) || !response.data.length) return;
 
     localStorage.setItem('@DesafioDev:selectedStore', response.data[0].id);
 

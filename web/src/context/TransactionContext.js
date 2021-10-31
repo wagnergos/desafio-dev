@@ -12,7 +12,7 @@ export function TransactionProvider({ children }) {
   const [transactions, setTransactions] = useState([]);
   const [totalTransactions, setTotalTransactions] = useState(0);
 
-  const getTransactions = useCallback(async (storeId, page = 1) => {
+  const getTransactions = useCallback(async (storeId = 1, page = 1) => {
     const response = await api.get(`transactions/${storeId}`, {
       params: {
         page,
