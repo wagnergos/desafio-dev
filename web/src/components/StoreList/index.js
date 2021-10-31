@@ -24,7 +24,7 @@ export default function StoreList() {
     <Container>
       {Array.isArray(stores) && !!stores.length ? (
         stores.map(store => (
-          <Button selected>
+          <Button key={store.id} selected>
             <strong>{store.name}</strong>
             <p>{store.owner_name}</p>
             <span>R$ 1.500,00</span>

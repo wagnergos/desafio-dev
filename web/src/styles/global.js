@@ -37,5 +37,11 @@ export default createGlobalStyle`
 
     --white: #fff;
     --gray: #898989;
+
+    --success-primary: #7af09e;
+    --sucess-secondary: #2e656a;
+
+    --error-primary: #fddede;
+    --error-secondary: #c53030;
   }
 `;
