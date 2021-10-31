@@ -6,7 +6,7 @@ class TransactionController {
     const { storeId: store_id } = req.params;
     const { page = 1 } = req.query;
 
-    const transactions = await Transaction.findAll({
+    const { count, rows } = await Transaction.findAndCountAll({
       where: { store_id },
       attributes: [
         'id',
@@ -17,8 +17,8 @@ class TransactionController {
         'transaction_category_id',
       ],
       order: [['transaction_at', 'DESC']],
-      limit: 20,
-      offset: (page - 1) * 20,
+      limit: 10,
+      offset: (page - 1) * 10,
       include: [
         {
           model: TransactionCategory,
@@ -28,7 +28,12 @@ class TransactionController {
       ],
     });
 
-    return res.json(transactions);
+    res.header({
+      'Access-Control-Expose-Headers': 'X-Total-Count',
+      'X-Total-Count': count,
+    });
+
+    return res.json(rows);
   }
 }
 
