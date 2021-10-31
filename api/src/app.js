@@ -1,6 +1,7 @@
 import './bootstrap';
 
 import express from 'express';
+import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from '../swagger.json';
@@ -17,7 +18,9 @@ class App {
     this.routes();
   }
 
-  middlewares() {}
+  middlewares() {
+    this.server.use(cors());
+  }
 
   routes() {
     this.server.use(
