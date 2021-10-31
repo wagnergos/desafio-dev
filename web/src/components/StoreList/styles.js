@@ -29,6 +29,11 @@ export const Container = styled.div`
   ::-webkit-scrollbar-track {
     background: var(--primary);
   }
+
+  h2 {
+    text-align: left;
+    color: var(--secondary);
+  }
 `;
 
 export const Button = styled.button`

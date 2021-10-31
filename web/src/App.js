@@ -5,10 +5,15 @@ import Routes from './routes';
 
 import GlobalStyle from './styles/global';
 
+import { StoreProvider } from './context/StoreContext';
+
 function App() {
   return (
     <Router>
-      <Routes />
+      <StoreProvider>
+        <Routes />
+      </StoreProvider>
+
       <GlobalStyle />
     </Router>
   );
