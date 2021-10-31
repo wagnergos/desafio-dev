@@ -1,6 +1,9 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { formatToBrl } from '../helpers/currency';
+import { formatToBrDate } from '../helpers/date';
+
 import api from '../services/api';
 
 const TransactionContext = createContext([]);
@@ -11,7 +14,21 @@ export function TransactionProvider({ children }) {
   const getTransactions = useCallback(async storeId => {
     const response = await api.get(`transactions/${storeId}`);
 
-    setTransactions(response.data);
+    const formattedTransactions = await Promise.all(
+      response.data.map(transaction => ({
+        ...transaction,
+        formattedTransactionAt: formatToBrDate(transaction.transaction_at),
+        formattedValue: formatToBrl(
+          transaction.category.type === 'input'
+            ? transaction.value
+            : transaction.value * -1
+        ),
+        formattedType:
+          transaction.category.type === 'input' ? 'Entrada' : 'Saída',
+      }))
+    );
+
+    setTransactions(formattedTransactions);
   }, []);
 
   return (

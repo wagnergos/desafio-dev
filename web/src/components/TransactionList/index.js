@@ -44,10 +44,10 @@ export default function TransactionList() {
         <tbody>
           {transactions.map(transaction => (
             <tr key={transaction.id}>
-              <td>{transaction.transaction_at}</td>
-              <td>{transaction.value}</td>
+              <td>{transaction.formattedTransactionAt}</td>
+              <td>{transaction.formattedValue}</td>
               <td>{transaction.category.name}</td>
-              <td>{transaction.category.type}</td>
+              <td>{transaction.formattedType}</td>
               <td>{transaction.card}</td>
               <td>{transaction.cpf}</td>
             </tr>
