@@ -9,6 +9,7 @@ class TransactionController {
     const transactions = await Transaction.findAll({
       where: { store_id },
       attributes: [
+        'id',
         'value',
         'cpf',
         'card',
