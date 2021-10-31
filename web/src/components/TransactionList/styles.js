@@ -54,5 +54,13 @@ export const Table = styled.table`
       color: var(--white);
       background: var(--gray);
     }
+
+    & > td.input {
+      color: var(--success-primary);
+    }
+
+    & > td.output {
+      color: var(--error-primary);
+    }
   }
 `;

@@ -45,7 +45,9 @@ export default function TransactionList() {
           {transactions.map(transaction => (
             <tr key={transaction.id}>
               <td>{transaction.formattedTransactionAt}</td>
-              <td>{transaction.formattedValue}</td>
+              <td className={transaction.category.type}>
+                {transaction.formattedValue}
+              </td>
               <td>{transaction.category.name}</td>
               <td>{transaction.formattedType}</td>
               <td>{transaction.card}</td>
