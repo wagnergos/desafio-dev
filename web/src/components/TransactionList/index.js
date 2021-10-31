@@ -8,6 +8,7 @@ import { Container, Table } from './styles';
 
 export default function TransactionList() {
   const [page, setPage] = useState(1);
+  const [loadingTransactions, setLoadingTransactions] = useState(false);
 
   const { transactions, totalTransactions, getTransactions } = useTransaction();
   const { selectedStore } = useStore();
@@ -17,7 +18,11 @@ export default function TransactionList() {
     async function loadTransactions() {
       try {
         setPage(1);
+        setLoadingTransactions(true);
+
         await getTransactions(selectedStore);
+
+        setLoadingTransactions(false);
       } catch (error) {
         addToast({
           type: 'error',
@@ -25,6 +30,8 @@ export default function TransactionList() {
           description:
             'Ocorreu um erro ao tentar listar as transações, verifique a sua conexão.',
         });
+
+        setLoadingTransactions(false);
       }
     }
 
@@ -47,54 +54,81 @@ export default function TransactionList() {
     return page < Math.ceil(totalTransactions / 10);
   }, [page, totalTransactions]);
 
-  return (
-    <Container>
-      <Table>
-        <thead>
-          <tr>
-            <th>Data da transação</th>
-            <th>Valor</th>
-            <th>Transação</th>
-            <th>Natureza</th>
-            <th>Cartão</th>
-            <th>CPF</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map(transaction => (
-            <tr key={transaction.id}>
-              <td>{transaction.formattedTransactionAt}</td>
-              <td className={transaction.category.type}>
-                {transaction.formattedValue}
-              </td>
-              <td>{transaction.category.name}</td>
-              <td>{transaction.formattedType}</td>
-              <td>{transaction.card}</td>
-              <td>{transaction.cpf}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+  const pageTotal = useMemo(() => {
+    let total = page * 10;
+    if (total > totalTransactions) total = totalTransactions;
 
-      <div>
-        <span>
-          <strong>{page * 10 - 10}</strong> - <strong>{page * 10}</strong> de{' '}
-          <strong>{totalTransactions}</strong>
-        </span>
+    return total;
+  }, [page, totalTransactions]);
+
+  function renderTransactionTable() {
+    return (
+      <>
+        <Table>
+          <thead>
+            <tr>
+              <th>Data da transação</th>
+              <th>Valor</th>
+              <th>Transação</th>
+              <th>Natureza</th>
+              <th>Cartão</th>
+              <th>CPF</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map(transaction => (
+              <tr key={transaction.id}>
+                <td>{transaction.formattedTransactionAt}</td>
+                <td className={transaction.category.type}>
+                  {transaction.formattedValue}
+                </td>
+                <td>{transaction.category.name}</td>
+                <td>{transaction.formattedType}</td>
+                <td>{transaction.card}</td>
+                <td>{transaction.cpf}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
 
         <div>
-          {page > 1 && (
-            <button type="button" onClick={() => changePage(page - 1)}>
-              Anterior
-            </button>
-          )}
-          {hasNextPage && (
-            <button type="button" onClick={() => changePage(page + 1)}>
-              Próxima
-            </button>
-          )}
+          <span>
+            <strong>{page * 10 - 10}</strong> - <strong>{pageTotal}</strong> de{' '}
+            <strong>{totalTransactions}</strong>
+          </span>
+
+          <div>
+            {page > 1 && (
+              <button type="button" onClick={() => changePage(page - 1)}>
+                Anterior
+              </button>
+            )}
+            {hasNextPage && (
+              <button type="button" onClick={() => changePage(page + 1)}>
+                Próxima
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    </Container>
-  );
+      </>
+    );
+  }
+
+  function renderMessages() {
+    return selectedStore ? (
+      <h2>Ocorreu um erro ao listar as transações, tente novamente.</h2>
+    ) : (
+      <h2>Importe um arquivo CNAB para listar as transações das lojas.</h2>
+    );
+  }
+
+  function render() {
+    if (loadingTransactions) return <h2>Carregando...</h2>;
+    if (Array.isArray(transactions) && !!transactions.length) {
+      return renderTransactionTable();
+    }
+    return renderMessages();
+  }
+
+  return <Container>{render()}</Container>;
 }

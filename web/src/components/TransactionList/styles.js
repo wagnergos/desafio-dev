@@ -8,6 +8,16 @@ export const Container = styled.div`
 
   background: var(--secondary);
 
+  // 126px - header height: 86px, container padding: 40px
+  h2 {
+    height: calc(100vh - 126px);
+    color: var(--primary);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   & > div {
     padding: 12px;
     color: var(--gray);
