@@ -4,13 +4,30 @@ import styled from 'styled-components';
 export const Container = styled.div`
   grid-area: TL;
 
+  // 86px from header height
+  max-height: calc(100vh - 86px);
   padding: 20px;
+
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border: 3px solid var(--secondary);
+    background: var(--primary);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--secondary);
+  }
 
   background: var(--secondary);
 
-  // 126px - header height: 86px, container padding: 40px
   h2 {
-    height: calc(100vh - 126px);
+    height: 100%;
     color: var(--primary);
 
     display: flex;
