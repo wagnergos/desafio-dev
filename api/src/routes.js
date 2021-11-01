@@ -16,7 +16,9 @@ const routes = new Router();
 
 routes.post('/sessions', SessionControler.store);
 
-routes.use(authMiddleware);
+if (process.env.NODE_ENV !== 'test') {
+  routes.use(authMiddleware);
+}
 
 routes.get('/stores', StoreController.index);
 
