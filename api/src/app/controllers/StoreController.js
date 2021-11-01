@@ -1,10 +1,8 @@
-import Store from '../models/Store';
+import GetStores from '../services/GetStores';
 
 class StoreController {
   async index(req, res) {
-    const stores = await Store.findAll({
-      attributes: ['id', 'name', 'owner_name'],
-    });
+    const stores = await GetStores.run();
 
     return res.json(stores);
   }
