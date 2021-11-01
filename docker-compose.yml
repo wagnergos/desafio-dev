@@ -1,0 +1,50 @@
+version: "3.7"
+
+services: 
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-api
+    container_name: desafiodev_api
+    env_file: ./api/.env
+    ports:
+      - 3333:3333
+    depends_on:
+      - database
+    networks:
+      - desafiodev
+    restart: unless-stopped
+
+  database:
+    image: postgres
+    container_name: desafiodev_database
+    environment:
+      - POSTGRES_DB=bycoders
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - desafiodev
+  
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-web
+    container_name: desafiodev_web
+    ports:
+      - 80:3000
+    depends_on:
+      - api
+    networks:
+      - desafiodev
+    restart: unless-stopped
+  
+networks:
+  desafiodev:
+    driver: bridge
+
+volumes:
+  postgres:

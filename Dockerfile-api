@@ -1,0 +1,11 @@
+FROM node:14-alpine 
+
+WORKDIR /app
+
+COPY ./api /app
+
+RUN yarn install
+
+EXPOSE 3333
+
+CMD ["yarn", "dev"]
