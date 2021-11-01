@@ -1,85 +1,138 @@
-# Desafio programação - para vaga desenvolvedor
+<h1 align="center">Desafio programação</h1>
 
-Por favor leiam este documento do começo ao fim, com muita atenção.
-O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
-O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
+<p align="center">Projeto desenvolvido com a finalidade de completar o desafio proposto pela empresa ByCoders, à vista disso foi realizado o desenvolvimento de uma API e uma aplicação web.</p>
 
-# Instruções de entrega do desafio
-
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato Bycoders_ com cópia para rh@bycoders.com.br.
-
-# Descrição do projeto
-
-Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
-Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
-
-Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
-
-**Sua aplicação web DEVE:**
-
-1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
-2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
-3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-4. Ser escrita na sua linguagem de programação de preferência
-5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
-6. Git com commits atomicos e bem descritos
-7. PostgreSQL, MySQL ou SQL Server
-8. Ter testes automatizados
-9. Docker compose (Pontos extras se utilizar)
-10. Readme file descrevendo bem o projeto e seu setup
-11. Incluir informação descrevendo como consumir o endpoint da API
-
-**Sua aplicação web não precisa:**
-
-1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
-2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
-3. Documentação da api.(Será um diferencial e pontos extras se fizer)
-
-# Documentação do CNAB
-
-| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
-| ------------- | ------------- | -----| ---- | ------
-| Tipo  | 1  | 1 | 1 | Tipo da transação
-| Data  | 2  | 9 | 8 | Data da ocorrência
-| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
-| CPF | 20 | 30 | 11 | CPF do beneficiário
-| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
-| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
-| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
-| Nome loja | 63 | 81 | 19 | Nome da loja
-
-# Documentação sobre os tipos das transações
-
-| Tipo | Descrição | Natureza | Sinal |
-| ---- | -------- | --------- | ----- |
-| 1 | Débito | Entrada | + |
-| 2 | Boleto | Saída | - |
-| 3 | Financiamento | Saída | - |
-| 4 | Crédito | Entrada | + |
-| 5 | Recebimento Empréstimo | Entrada | + |
-| 6 | Vendas | Entrada | + |
-| 7 | Recebimento TED | Entrada | + |
-| 8 | Recebimento DOC | Entrada | + |
-| 9 | Aluguel | Saída | - |
-
-# Avaliação
-
-Seu projeto será avaliado de acordo com os seguintes critérios.
-
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Qualidade e cobertura dos testes unitários.
-
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
-
-# Referência
-
-Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
+<div align="center">
+<img src="./readme/sign_in_screen.png" width="300" height="165">
+<img src="./readme/dashboard_sreen.png" width="300" height="165">
+</div>
 
 ---
+</br>
 
-Boa sorte!
+# 🚀 Começando
+
+## Pré Requisitos
+
+- Para executar o projeto em ambiente local é necessário possuir o [Docker](https://docs.docker.com/get-docker/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
+
+## Clone
+
+- Clone este repositório em seu computador usando:
+
+```
+https://github.com/wagnergos/desafio-dev
+```
+
+## Executando
+
+- Acesse a pasta da API e copie o arquivo de .env.example (variáveis de ambientes) e renomeie-o para .env
+
+- Construa os serviços do docker utilizando o seguinte comando na pasta raiz do projeto:
+
+```
+docker-compose build
+```
+
+- Com os containers do docker montados, inicie-os, na pasta raiz do projeto use:
+
+```
+docker-compose up -d
+```
+
+- Feito isso você terá acesso aos seguintes links:
+    - Aplicação web em [http://localhost]( http://localhost)
+    - API em [http://localhost:3333]( http://localhost:3333)
+    - Documentação da API em [ http://localhost:3333/api-docs](http://localhost:3333/api-docs)
+
+- Caso queira parar o contêiner do docker, na pasta raiz use:
+
+```
+docker-compose stop
+```
+
+- Ou se quiser remover tudo que o build do docker criou, na pasta raiz use:
+
+```
+docker-compose down
+```
+
+# 🤔 Algumas observações sobre a aplicação
+
+- Não foi desenvolvido a rota para criação de usuários, portanto para realizar a autenticação de usuário utilizar os seguintes dados:
+    - email: **desafiodev@email.com**
+    - password: **desafiodev**
+
+# 📋 Funcionalidades
+
+- [x] Interface web para importação de arquivo .txt
+- [x] Parsear e normalizar os dados de um arquivo CNAB.txt e salvar em uma base de dados
+- [x] Listar as transações advindas do CNAB filtrado por lojas
+- [x] Listar as lojas com totalizador do saldo em conta
+- [x] Persistência de alguns dados no localStorage 
+- [x] Autenticação com JWT
+- [x] Logout automático quando o JWT expira
+- [x] Notificações por Toasts
+
+## Tecnologias
+
+- Interface
+    - [ReactJS] - Um framework para desenvolvimento de interfaces web com React
+    - [Styled Components](https://styled-components.com/) - Use os melhores bits de ES6 e CSS para estilização
+- Navigation
+    - [React Router Dom](https://reactrouter.com/web/guides/quick-start) - Roteamento e navegação para aplicativos ReactJS
+- Comunicação HTTP
+    - [Axios](https://github.com/axios/axios) - Cliente HTTP baseado em promise para os navegadores web e Node.js
+- Verificação de tipo
+    - [prop-types](https://github.com/facebook/prop-types) - Verificação de tipo de tempo de execução para propriedades React ou objetos similares.
+- Linting
+    - [ESLint](https://github.com/eslint/eslint) - Encontrar e corrigir problemas em seu código JavaScript
+    - [Prettier](https://prettier.io/) - Formator de código opinativo
+- a
+    - [Express](https://expressjs.com/pt-br/) - Um framework rápido, fléxível para construção de servidores em Node.js
+- Banco de dados
+    - [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional open source
+    - [Sequelize](https://sequelize.org/) - ORM baseado em promise para Postgres
+- Documentação
+    - [Swagger](https://swagger.io/) - Ferramenta para simplificar a documentação de APIs
+- Testes
+    - [Jest](https://jestjs.io/pt-BR/) - Framework de testes em JavaScript
+- Plataforma de conteinerização
+    - [Docker](https://www.docker.com/) - Virtualização de pacotes de software isoladas chamadas de contêineres
+    - [Docker Compose](https://docs.docker.com/compose/) - Ferramenta para definir e executar aplicativos Docker de vários contêineres
+- Extra
+    - [eslint-config-airbnb](https://github.com/airbnb/javascript) - Uma abordagem para JavaScript utilizando a style guide do Airbnb
+
+## Fluxo da interface web
+
+- Tela inical para realizar a autenticação de usuário informando email e senha. **(email e senha de usuário cadastrado para autenticação: email: desafiodev@email.com, password: desafiodev)**
+
+- E uma única tela para exibição das lojas e tabela contendo as transições.
+
+    - As lojas são listadas em uma barra lateral em formato de botões que ao evento de selecionar (clicar) realizam a busca na API para as informações das transações da loja selecionada.
+
+    - As transações exibidas na tabela é de uma loja por vez.
+
+## Documentação da API
+
+- Como supracitado ao inicializar os contêineres do Docker a API ficará disponível no link:
+    - [ http://localhost:3333/api-docs](http://localhost:3333/api-docs)
+
+- A API possui 4 endpoints sendo eles:
+    - **/sessions** - para realizar a autencação do usuário, o qual envia um email e password e a API retorna um json web token para autenticações futuras.
+
+    - **/cnab** - realiza a importação do arquivo CNAB.txt e executa os services responsáveis por parsear e normalizar a informação, após os dados normalizados é acionado o service para realizar o salvamento dos dados na base de dados.
+    
+    - **/transactions/{storeId}?page=1** lista todas as transações filtrando por loja e limitando a quantidade de registros para 10 a cada página. A API envia como header X-Total-Count com o valor total dos registros para a loja.
+
+    - **/stores** lista todas as lojas já com o valor total em conta.
+
+## Testes
+
+- Na pagina da API use o comando:
+
+```
+yarn test
+```
+
+- Só foi desenvolvido testes de integração e unitários na API
