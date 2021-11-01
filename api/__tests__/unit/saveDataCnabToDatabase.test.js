@@ -1,12 +1,8 @@
+import '../../src/database';
+
 import SaveDataCnabToDatabase from '../../src/app/services/SaveDataCnabToDatabase';
 
-import truncate from '../util/truncate';
-
 describe('create register from cnab', () => {
-  beforeEach(async () => {
-    await truncate();
-  });
-
   it('should be able to register store and transaction from cnab', async () => {
     const data = {
       type: 3,
