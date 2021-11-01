@@ -24,12 +24,21 @@ export default function TransactionList() {
 
         setLoadingTransactions(false);
       } catch (error) {
-        addToast({
+        const { status } = error.response;
+
+        const authMsg = {
+          type: 'error',
+          title: 'Sessão expirou',
+          description: 'Realize o login novamente para ter acesso.',
+        };
+        const defaultMsg = {
           type: 'error',
           title: 'Erro na listagem das transações',
           description:
             'Ocorreu um erro ao tentar listar as transações, verifique a sua conexão.',
-        });
+        };
+
+        addToast(status === 401 ? authMsg : defaultMsg);
 
         setLoadingTransactions(false);
       }

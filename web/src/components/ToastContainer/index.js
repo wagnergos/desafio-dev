@@ -7,7 +7,7 @@ import { Container } from './styles';
 
 export default function ToastContainer({ messages }) {
   return (
-    <Container>
+    <Container hasMessage={!!messages.length}>
       {messages.map(message => (
         <Toast key={message.id} message={message} />
       ))}

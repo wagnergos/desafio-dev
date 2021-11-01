@@ -25,5 +25,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'import/no-cycle': [2, { maxDepth: 1 }],
+    'react/jsx-props-no-spreading': 'off',
   },
 };

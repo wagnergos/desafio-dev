@@ -21,6 +21,9 @@ export default function StoreList() {
 
         setLoadingStores(false);
       } catch (error) {
+        const { status } = error.response;
+
+        if (status === 401) return;
         addToast({
           type: 'error',
           title: 'Erro na listagem de lojas',

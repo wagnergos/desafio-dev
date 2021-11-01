@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { AuthProvider } from './AuthContext';
 import { StoreProvider } from './StoreContext';
 import { TransactionProvider } from './TransactionContext';
 import { ToastProvider } from './ToastContext';
 
 export const AppProvider = ({ children }) => (
-  <StoreProvider>
-    <TransactionProvider>
-      <ToastProvider>{children}</ToastProvider>
-    </TransactionProvider>
-  </StoreProvider>
+  <AuthProvider>
+    <StoreProvider>
+      <TransactionProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </TransactionProvider>
+    </StoreProvider>
+  </AuthProvider>
 );
 
 AppProvider.propTypes = {
