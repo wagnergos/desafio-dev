@@ -5,6 +5,10 @@ import {
 
 class CnabParser {
   run(cnabText) {
+    if (!cnabText.length) {
+      throw new Error('CNAB file must contain transactions');
+    }
+
     const transactions = cnabText
       .split(/\r?\n|\r/)
       .map(transaction => transaction.trim())
