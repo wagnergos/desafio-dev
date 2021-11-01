@@ -1,14 +1,193 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "ByCoders - desafio dev",
-    "description": "This is an API ByCoders",
+    "title": "ByCoders - developer challenge",
+    "description": "This is an API documentation for ByCoders developer challenge",
     "version": "1.0.0",
     "contact": {
       "email": "wagner.wgos@gmail.com"
     }
   },
   "paths": {
+    "/sessions": {
+      "post": {
+        "tags": ["session"],
+        "summary": "Authentication",
+        "description": "Authentication using JWT. All routes need token to authenticate.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "desafiodev@email.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "desafiodev"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "desafiodev@email.com"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1NzcwODk0LCJleHAiOjE2MzYzNzU2OTR9.eT97jkCUWtOzJ1W4rjfJeYPd-x2HhwrFyV3aPA7seyI"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Email and password is required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Password does not match."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cnab": {
+      "post": {
+        "tags": ["upload"],
+        "summary": "Upload a CNAB.txt file",
+        "consumes": ["multipart/form-data"],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "file"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "CNAB file is required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Token not provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/stores": {
       "get": {
         "tags": ["stores"],
@@ -25,14 +204,53 @@
                     "type": "object",
                     "properties": {
                       "id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                       },
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "BAR DO JOÃO"
                       },
-                      "description": {
-                        "type": "string"
+                      "owner_name": {
+                        "type": "string",
+                        "example": "JOÃO MACEDO"
+                      },
+                      "total_value": {
+                        "type": "number",
+                        "example": -10200
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Token not provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error."
                     }
                   }
                 }
@@ -42,11 +260,27 @@
         }
       }
     },
-    "/transactions": {
+    "/transactions/{storeId}": {
       "get": {
         "tags": ["transactions"],
         "summary": "List all transactions",
-        "description": "List all transactions",
+        "description": "List all transactions by store with paging 10 registers per page",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "Store id that transactions will be fetched",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Store page index that needs to be fetched. By defaul it's 1"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -57,33 +291,84 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
                       "value": {
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 11200
                       },
                       "cpf": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "09620676017"
                       },
                       "card": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "3648****0099"
                       },
                       "transaction_at": {
                         "type": "string",
                         "example": "2021-10-29T07:48:39.000Z"
                       },
                       "transaction_category_id": {
-                        "type": "string"
+                        "type": "integer",
+                        "example": 1
                       },
                       "category": {
                         "type": "object",
                         "properties": {
                           "name": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "Débito"
                           },
                           "type": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "input"
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "schema": {
+                  "type": "integer",
+                  "example": 42
+                },
+                "description": "Total store transaction registers"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Token invalid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error."
                     }
                   }
                 }
