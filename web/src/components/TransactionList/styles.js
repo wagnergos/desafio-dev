@@ -35,7 +35,7 @@ export const Container = styled.div`
     align-items: center;
   }
 
-  & > div {
+  & > div:nth-child(2) {
     padding: 12px;
     color: var(--gray);
 
@@ -64,39 +64,43 @@ export const Container = styled.div`
   }
 `;
 
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
+export const TableContent = styled.div`
+  min-height: 460px;
 
-  th,
-  td {
-    padding: 12px;
-  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
 
-  thead th {
-    text-align: left;
-    font-weight: bold;
-    color: var(--white);
-  }
-
-  tbody tr {
-    color: var(--white);
-
-    &:nth-of-type(odd) {
-      color: var(--gray);
+    th,
+    td {
+      padding: 12px;
     }
 
-    &:hover {
+    thead th {
+      text-align: left;
+      font-weight: bold;
       color: var(--white);
-      background: var(--gray);
     }
 
-    & > td.input {
-      color: var(--success-primary);
-    }
+    tbody tr {
+      color: var(--white);
 
-    & > td.output {
-      color: var(--error-primary);
+      &:nth-of-type(odd) {
+        color: var(--gray);
+      }
+
+      &:hover {
+        color: var(--white);
+        background: var(--gray);
+      }
+
+      & > td.input {
+        color: var(--success-primary);
+      }
+
+      & > td.output {
+        color: var(--error-primary);
+      }
     }
   }
 `;

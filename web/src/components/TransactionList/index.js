@@ -4,7 +4,7 @@ import { useTransaction } from '../../context/TransactionContext';
 import { useStore } from '../../context/StoreContext';
 import { useToast } from '../../context/ToastContext';
 
-import { Container, Table } from './styles';
+import { Container, TableContent } from './styles';
 
 export default function TransactionList() {
   const [page, setPage] = useState(1);
@@ -53,6 +53,11 @@ export default function TransactionList() {
 
       setPage(newPage);
 
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
       await getTransactions(selectedStore, newPage);
     },
     [selectedStore, getTransactions]
@@ -72,33 +77,34 @@ export default function TransactionList() {
   function renderTransactionTable() {
     return (
       <>
-        <Table>
-          <thead>
-            <tr>
-              <th>Data da transação</th>
-              <th>Valor</th>
-              <th>Transação</th>
-              <th>Natureza</th>
-              <th>Cartão</th>
-              <th>CPF</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map(transaction => (
-              <tr key={transaction.id}>
-                <td>{transaction.formattedTransactionAt}</td>
-                <td className={transaction.category.type}>
-                  {transaction.formattedValue}
-                </td>
-                <td>{transaction.category.name}</td>
-                <td>{transaction.formattedType}</td>
-                <td>{transaction.card}</td>
-                <td>{transaction.cpf}</td>
+        <TableContent>
+          <table>
+            <thead>
+              <tr>
+                <th>Data da transação</th>
+                <th>Valor</th>
+                <th>Transação</th>
+                <th>Natureza</th>
+                <th>Cartão</th>
+                <th>CPF</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-
+            </thead>
+            <tbody>
+              {transactions.map(transaction => (
+                <tr key={transaction.id}>
+                  <td>{transaction.formattedTransactionAt}</td>
+                  <td className={transaction.category.type}>
+                    {transaction.formattedValue}
+                  </td>
+                  <td>{transaction.category.name}</td>
+                  <td>{transaction.formattedType}</td>
+                  <td>{transaction.card}</td>
+                  <td>{transaction.cpf}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </TableContent>
         <div>
           <span>
             <strong>{page * 10 - 10}</strong> - <strong>{pageTotal}</strong> de{' '}
