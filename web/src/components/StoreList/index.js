@@ -64,5 +64,9 @@ export default function StoreList() {
     return renderMessages();
   }
 
-  return <Container>{render()}</Container>;
+  return (
+    <Container>
+      <div>{render()}</div>
+    </Container>
+  );
 }

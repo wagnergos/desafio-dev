@@ -44,16 +44,21 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    transition: color ease 0.2s;
+
     button {
       padding: 10px;
       border-radius: 4px;
+      color: var(--secondary);
+      font-weight: bold;
+      background: var(--primary);
 
       & + button {
         margin-left: 20px;
       }
 
       &:hover {
-        background: var(--primary);
+        color: var(--white);
       }
     }
   }

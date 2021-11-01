@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // SL - Store List
-export const Container = styled.div`
+export const Container = styled.aside`
   grid-area: SL;
 
   max-height: 100vh;
@@ -28,6 +28,10 @@ export const Container = styled.div`
 
   ::-webkit-scrollbar-track {
     background: var(--primary);
+  }
+
+  div {
+    direction: ltr;
   }
 
   h2 {
@@ -72,6 +76,6 @@ export const Button = styled.button`
   span {
     font-weight: bold;
     color: ${({ isNegative }) =>
-      isNegative ? 'var(--error-primary)' : 'var(--primary)'};
+      isNegative ? 'var(--red)' : 'var(--primary)'};
   }
 `;

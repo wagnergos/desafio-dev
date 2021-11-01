@@ -37,6 +37,7 @@ export default createGlobalStyle`
 
     --white: #fff;
     --gray: #898989;
+    --red: #e65555;
 
     --success-primary: #7af09e;
     --sucess-secondary: #2e656a;
