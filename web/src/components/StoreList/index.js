@@ -41,10 +41,11 @@ export default function StoreList() {
         key={store.id}
         onClick={() => selectStore(store.id)}
         selected={selectedStore === store.id}
+        isNegative={store.total_value < 0}
       >
         <strong>{store.name}</strong>
         <p>{store.owner_name}</p>
-        <span>R$ 1.500,00</span>
+        <span>{store.formattedTotalValue}</span>
       </Button>
     ));
   }

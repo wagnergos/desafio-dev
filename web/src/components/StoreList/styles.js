@@ -71,6 +71,7 @@ export const Button = styled.button`
 
   span {
     font-weight: bold;
-    color: var(--primary);
+    color: ${({ isNegative }) =>
+      isNegative ? 'var(--error-primary)' : 'var(--primary)'};
   }
 `;

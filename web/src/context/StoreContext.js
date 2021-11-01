@@ -1,6 +1,8 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { formatToBrl } from '../helpers/currency';
+
 import api from '../services/api';
 
 const StoreContext = createContext({});
@@ -27,14 +29,22 @@ export const StoreProvider = ({ children }) => {
 
     if (!Array.isArray(response.data) || !response.data.length) return;
 
+    const formattedStore = await response.data.map(store => ({
+      ...store,
+      formattedTotalValue: formatToBrl(store.total_value),
+    }));
+
     localStorage.setItem('@DesafioDev:selectedStore', response.data[0].id);
 
     if (!storeId) {
-      localStorage.setItem('@DesafioDev:stores', JSON.stringify(response.data));
+      localStorage.setItem(
+        '@DesafioDev:stores',
+        JSON.stringify(formattedStore)
+      );
       setSelectedStore(response.data[0].id);
     }
 
-    setStores(response.data);
+    setStores(formattedStore);
   }, []);
 
   const selectStore = useCallback(id => {
