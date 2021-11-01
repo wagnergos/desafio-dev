@@ -82,7 +82,7 @@ export default function SignIn() {
           />
           {passwordValidation && <span>{passwordValidation}</span>}
 
-          <button type="submit">
+          <button type="submit" disabled={submitLoading}>
             {submitLoading ? 'Carregando...' : 'Entrar'}
           </button>
         </form>

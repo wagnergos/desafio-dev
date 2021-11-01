@@ -46,9 +46,14 @@ export const Container = styled.div`
 
         transition: background 0.2s;
 
-        &:hover {
+        &:hover:enabled {
           background: var(--white);
           color: var(--primary);
+        }
+
+        &:disabled {
+          background: var(--gray);
+          cursor: not-allowed;
         }
       }
     }
