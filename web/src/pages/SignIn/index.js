@@ -44,16 +44,18 @@ export default function SignIn() {
         const errorMsgs = ['User not found', 'Password does not match'];
         const translationMsgs = ['Usuário não encontrado', 'Senha incorreta'];
 
-        const { error } = err.response?.data;
+        const { error } = err.response.data || -1;
 
         const msgIndex = errorMsgs.indexOf(error);
+
+        const msg =
+          translationMsgs[msgIndex] ||
+          'Ocorreu um erro na autenticação, tente novamente!';
 
         addToast({
           title: 'Erro na autenticação',
           type: 'error',
-          description:
-            translationMsgs[msgIndex] ||
-            'Ocorreu um erro na autenticação, tente novamente!',
+          description: msg,
         });
         setEmail('');
         setPassword('');
