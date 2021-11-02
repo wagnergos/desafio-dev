@@ -10,13 +10,13 @@
 ---
 </br>
 
-# 🚀 Começando
+## 🚀 Começando
 
-## Pré Requisitos
+### Pré Requisitos
 
 - Para executar o projeto em ambiente local é necessário possuir o [Docker](https://docs.docker.com/get-docker/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
 
-## Clone
+### Clone
 
 - Clone este repositório em seu computador usando:
 
@@ -24,7 +24,7 @@
 https://github.com/wagnergos/desafio-dev
 ```
 
-## Executando
+### Executando
 
 - Acesse a pasta da API e copie o arquivo de .env.example (variáveis de ambientes) e renomeie-o para .env
 
@@ -57,13 +57,13 @@ docker-compose stop
 docker-compose down
 ```
 
-# 🤔 Algumas observações sobre a aplicação
+## Algumas observações sobre a aplicação
 
 - Não foi desenvolvido a rota para criação de usuários, portanto para realizar a autenticação de usuário utilizar os seguintes dados:
     - email: **desafiodev@email.com**
     - password: **desafiodev**
 
-# 📋 Funcionalidades
+### 📋 Funcionalidades
 
 - [x] Interface web para importação de arquivo .txt
 - [x] Parsear e normalizar os dados de um arquivo CNAB.txt e salvar em uma base de dados
@@ -74,7 +74,7 @@ docker-compose down
 - [x] Logout automático quando o JWT expira
 - [x] Notificações por Toasts
 
-## Tecnologias
+### Tecnologias
 
 - Interface
     - [ReactJS] - Um framework para desenvolvimento de interfaces web com React
@@ -103,7 +103,7 @@ docker-compose down
 - Extra
     - [eslint-config-airbnb](https://github.com/airbnb/javascript) - Uma abordagem para JavaScript utilizando a style guide do Airbnb
 
-## Fluxo da interface web
+### Fluxo da interface web
 
 - Tela inical para realizar a autenticação de usuário informando email e senha. **(email e senha de usuário cadastrado para autenticação: email: desafiodev@email.com, password: desafiodev)**
 
@@ -113,7 +113,7 @@ docker-compose down
 
     - As transações exibidas na tabela é de uma loja por vez.
 
-## Documentação da API
+### Documentação da API
 
 - Como supracitado ao inicializar os contêineres do Docker a API ficará disponível no link:
     - [ http://localhost:3333/api-docs](http://localhost:3333/api-docs)
@@ -127,7 +127,7 @@ docker-compose down
 
     - **/stores** lista todas as lojas já com o valor total em conta.
 
-## Testes
+### Testes
 
 - Na pagina da API use o comando:
 
