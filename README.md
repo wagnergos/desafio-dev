@@ -77,7 +77,7 @@ docker-compose down
 ### Tecnologias
 
 - Interface
-    - [ReactJS] - Um framework para desenvolvimento de interfaces web com React
+    - [ReactJS](https://pt-br.reactjs.org/) - Um framework para desenvolvimento de interfaces web com React
     - [Styled Components](https://styled-components.com/) - Use os melhores bits de ES6 e CSS para estilização
 - Navigation
     - [React Router Dom](https://reactrouter.com/web/guides/quick-start) - Roteamento e navegação para aplicativos ReactJS
