@@ -35,16 +35,12 @@ export default function SignIn() {
       try {
         await signIn({ email, password });
 
-        setEmail('');
-        setPassword('');
-        setSubmitLoading(false);
-
         history.push('/dashboard');
       } catch (err) {
         const errorMsgs = ['User not found', 'Password does not match'];
         const translationMsgs = ['Usuário não encontrado', 'Senha incorreta'];
 
-        const { error } = err.response.data || -1;
+        const { error } = (err.response && err.response.data) || -1;
 
         const msgIndex = errorMsgs.indexOf(error);
 

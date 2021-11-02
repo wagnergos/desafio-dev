@@ -24,7 +24,7 @@ export default function TransactionList() {
 
         setLoadingTransactions(false);
       } catch (error) {
-        const { status } = error.response || 500;
+        const { status } = (error && error.response) || 500;
 
         const authMsg = {
           type: 'error',
