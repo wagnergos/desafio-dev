@@ -88,7 +88,7 @@ docker-compose down
 - Linting
     - [ESLint](https://github.com/eslint/eslint) - Encontrar e corrigir problemas em seu código JavaScript
     - [Prettier](https://prettier.io/) - Formator de código opinativo
-- a
+- Servidor
     - [Express](https://expressjs.com/pt-br/) - Um framework rápido, fléxível para construção de servidores em Node.js
 - Banco de dados
     - [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional open source
