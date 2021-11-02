@@ -63,7 +63,7 @@ docker-compose down
     - email: **desafiodev@email.com**
     - password: **desafiodev**
 
-### 📋 Funcionalidades
+## 📋 Funcionalidades
 
 - [x] Interface web para importação de arquivo .txt
 - [x] Parsear e normalizar os dados de um arquivo CNAB.txt e salvar em uma base de dados
